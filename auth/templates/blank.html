@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Exitoso</title>
+    <!-- Prevenir cacheo del navegador -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .success-message {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-message">
+        <h1>Acceso Exitoso</h1>
+        <p>Has iniciado sesión correctamente.</p>
+        <div id="user-info"></div>
+        <p><a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+    </div>
+
+    <script>
+        // Función para prevenir navegación hacia atrás de manera más efectiva
+        (function preventBackNavigation() {
+            // 1. Reemplazar la entrada de historial actual para evitar volver a la página de login
+            history.replaceState(null, document.title, location.href);
+            
+            // 2. Agregar una nueva entrada al historial para que el botón "atrás" lleve a esta misma página
+            history.pushState(null, document.title, location.href);
+            
+            // 3. Cuando el usuario intente navegar hacia atrás (presione el botón atrás)
+            window.addEventListener('popstate', function() {
+                // Reemplazar la entrada del historial nuevamente
+                history.replaceState(null, document.title, location.href);
+                
+                // Y volver a agregar una nueva entrada
+                history.pushState(null, document.title, location.href);
+                
+                // Opcional: Mostrar un mensaje al usuario
+                alert("No puedes volver a la página de inicio de sesión. Por favor, usa el botón de cerrar sesión si deseas salir.");
+            });
+            
+            // 4. Prevenir el uso de teclas para navegación
+            window.addEventListener('keydown', function(e) {
+                // Detectar Alt+Left (navegación hacia atrás en muchos navegadores)
+                if ((e.altKey && e.keyCode === 37) || 
+                    // Prevenir Backspace para navegación (excepto en elementos de entrada)
+                    (e.keyCode === 8 && 
+                     !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName))) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // 5. Limpiar caché de página al cargar
+            window.onload = function() {
+                // Establecer las cookies de sesión para que expiren
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, 
+                    "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                
+                // Forzar recarga completa si se detecta navegación desde caché
+                if (performance && performance.navigation.type === 2) {
+                    location.reload(true);
+                }
+            };
+        })();
+        
+        // Obtener información del usuario desde sessionStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(sessionStorage.getItem('user') || '{}');
+            if (userData.nombre) {
+                document.getElementById('user-info').innerHTML = `
+                    <p>Bienvenido, ${userData.nombre}</p>
+                    <p>Rol: ${userData.rol || 'Usuario'}</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
