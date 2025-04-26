@@ -1,5 +1,0 @@
-flask
-azure-data-tables
-azure-cosmos
-python-dotenv
-flask-cors

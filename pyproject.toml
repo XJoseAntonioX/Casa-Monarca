@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "casa-monarca"
+dynamic = ["version"]
+description = "Casa Monarca Project"
+authors = [
+    {name = "José Antonio Torres Villegas"}
+]
+
+requires-python = ">=3.7"
+
+dependencies = [
+    "flask",
+    "azure-data-tables",
+    "azure-cosmos",
+    "python-dotenv"
+]
