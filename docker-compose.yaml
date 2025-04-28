@@ -1,0 +1,29 @@
+services:
+  casa-monarca:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - FLASK_RUN_HOST=0.0.0.0
+    env_file:
+      - ./Casa_Monarca/db.env
+    secrets:
+      - url
+      - key
+      - database_name
+      - container_name
+    volumes:
+      - ./Casa_Monarca:/app/Casa_Monarca
+
+# Lugar de donde se guardan los secretos
+secrets:
+  url:
+    file: ./secrets/url.txt
+  key:
+    file: ./secrets/key.txt
+  database_name:
+    file: ./secrets/database_name.txt
+  container_name:
+    file: ./secrets/container_name.txt

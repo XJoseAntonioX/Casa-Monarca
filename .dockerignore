@@ -1,0 +1,7 @@
+venv/                 # Virtual environment (large and not needed)
+__pycache__/          # Python cache files
+*.pyc, *.pyo, *.pyd   # Python compiled files
+.Python               # Python interpreter symlink
+.env, *.env, db.env   # Environment files with secrets
+.git/, .gitignore     # Version control files
+.vscode/              # Editor settings
