@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa Monarca - Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('user.static', filename='NavBar.css') }}">
+</head>
+<body>
+  <!-- Header section -->
+  <header class="main-header">
+    <div class="logo-container">
+      <!-- Menu toggle button moved to sidebar -->
+      <img src="{{ url_for('components.static', filename='Casa-Monarca.png') }}" alt="Logo de Casa Monarca" class="header-logo">
+    </div>
+    <div class="workspace-info">
+      <p>Área de trabajo: <span>Humanitario</span></p>
+    </div>
+  </header>
+  
+  <!-- Main content container -->
+  <div class="content-wrapper">
+    <!-- Sidebar navigation -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Menu toggle button positioned without inline styles -->
+      <button class="menu-toggle sidebar-button" id="menuToggle">
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <nav class="nav-links">
+        <a href="#">Subir y firmar documentos</a>
+        <a href="#">Historial de documentos</a>
+        <a href="#">Sección 3</a>
+        <a href="#">Sección 4</a>
+        <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
+      </nav>
+    </aside>
+
+    <!-- Page content goes here -->
+    <main class="main-content">
+      <!-- Your page content will go here -->
+    </main>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const header = document.querySelector('.main-header');
+    
+    // Removed the positionButton function and related event listeners
+    // since the button is now positioned in the header
+    
+    menuToggle.addEventListener('click', function() {
+      // Toggle the sidebar
+      sidebar.classList.toggle('active');
+      
+      // Toggle the active class on the button
+      menuToggle.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

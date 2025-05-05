@@ -1,0 +1,199 @@
+/* Sidebar general styles */
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+}
+
+/* Header styles */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 80px; /* Increased from 70px */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 60px; /* Increased from 50px */
+  max-width: 220px; /* Adjusted to maintain proportion */
+}
+
+.workspace-info {
+  font-size: 18px; /* Increased from 16px */
+  color: #333;
+  font-weight: 500;
+}
+
+.workspace-info span {
+  font-weight: bold;
+}
+
+/* Content layout */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+  background-color: white;
+}
+
+/* Menu toggle button */
+.menu-toggle {
+  position: fixed;
+  top: 90px; /* Adjusted from 80px to account for taller header */
+  left: 20px;
+  z-index: 100;
+  background-color: white;
+  border: 1px solid black; /* Black outline */
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background-color: #e0e0e0; /* Gray background on hover */
+}
+
+.menu-toggle.active {
+  top: 90px; /* Keep the same vertical position */
+  left: 250px; /* Position at the edge of the sidebar (sidebar width) */
+  right: auto; /* Reset right position */
+}
+
+.menu-toggle.active {
+  position: absolute;
+  top: 10px; /* Position at the top of the sidebar, with a small gap */
+  left: auto; /* Reset left position */
+  right: 15px; /* Position near the right edge of the sidebar */
+  z-index: 95; /* Above sidebar but below header */
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 18px;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: black; /* Changed to black lines */
+  border-radius: 3px;
+}
+
+/* Sidebar navigation */
+.sidebar {
+  width: 250px;
+  background-color: white; /* Changed to white */
+  height: calc(100vh - 80px); /* Adjusted for taller header */
+  position: fixed;
+  top: 80px; /* Adjusted for taller header */
+  left: -250px;
+  transition: left 0.3s ease;
+  z-index: 90;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  margin-top: 30px; /* Add space for the button above */
+}
+
+.nav-links a {
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.nav-links a:hover {
+  background-color: #e9ecef;
+  /* Removed color change on hover */
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  background-color: white;
+}
+
+/* Additional styles for button positioning and size */
+.menu-toggle {
+  position: absolute;
+  left: 15px;
+  top: calc(header height + 10px); /* Will be set by JavaScript */
+  transform: scale(0.85); /* Make button 15% smaller */
+  z-index: 100;
+}
+
+.content-wrapper {
+  position: relative; /* To allow absolute positioning of the button */
+}
+
+/* Add shadow to the header */
+.main-header {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10; /* Ensure header appears above other elements */
+}
+
+/* Add these new styles for the sidebar button */
+.sidebar-button {
+  position: absolute !important;
+  top: 10px !important;
+  right: -50px !important;
+  left: auto !important;
+  z-index: 1000 !important; /* Higher z-index to ensure visibility */
+  background-color: white !important;
+  border: 1px solid black !important;
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 5px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  padding: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Ensure the button appears to the right of an expanded sidebar */
+.sidebar.active .sidebar-button {
+  right: -50px !important;
+}

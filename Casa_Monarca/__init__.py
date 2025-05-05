@@ -7,7 +7,10 @@ from functools import wraps
 from flask import request, url_for, redirect, session, render_template, make_response
 
 # Initialize Flask with current folder as static and template location
-app = Flask(__name__, static_folder='auth/static', template_folder='auth/templates')
+app = Flask(__name__, 
+            static_folder='static',  # Root level static folder for common assets
+            static_url_path='/static',  # URL path for the common static folder
+            template_folder='auth/templates')
 # Set secret key for signing session cookies
 app.secret_key = os.getenv("SECRET_KEY", secrets.token_hex(16))
 
@@ -34,7 +37,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if "email" not in session or "user_id" not in session:
-            return redirect(url_for('index'))
+            return redirect(url_for('auth.index'))
         response = make_response(f(*args, **kwargs))
         # Add headers to prevent cache
         response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
@@ -43,5 +46,14 @@ def login_required(f):
         return response
     return decorated_function
 
-# Rutas declaradas en views.py
-from Casa_Monarca import views
+# Register the auth blueprint
+from Casa_Monarca.auth.auth import auth_bp
+app.register_blueprint(auth_bp)
+
+# Register the user blueprint
+from Casa_Monarca.user.user import user_bp
+app.register_blueprint(user_bp, url_prefix='/user')
+
+# Register the components blueprint
+from Casa_Monarca.components.components import components_bp
+app.register_blueprint(components_bp, url_prefix='/components')
