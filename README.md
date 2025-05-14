@@ -54,6 +54,10 @@ The application is built using:
 - Docker containerization for deployment
 - Modern HTML/CSS frontend with responsive design
 
+## Architecture
+
+![System Architecture](Casa_Monarca/components/static/architecture_rounded.png)
+
 ## Security Considerations
 
 This application was developed with a strong focus on:
