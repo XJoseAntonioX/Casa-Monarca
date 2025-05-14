@@ -13,7 +13,7 @@ The application features a secure dashboard that enables Casa Monarca staff to m
 ## Login Interface
 
 <div align="center">
-  <img src="Casa_Monarca/components/static/Login.png" width="400"/>
+  <img src="Casa_Monarca/components/static/Login.png" width="800"/>
 </div>
 
 ## Key Features
