@@ -10,18 +10,16 @@ The Casa Monarca project is a web application designed to support Casa Monarca's
 
 The application features a secure dashboard that enables Casa Monarca staff to monitor client cases, process documentation, and provide timely support to migrants navigating complex immigration processes.
 
-## Login Interface
-
-<div align="center">
-  <img src="Casa_Monarca/components/static/Login.png" width="1000"/>
-</div>
-
 ## Key Features
 
 ### User Authentication
 - Secure login system for Casa Monarca staff
 - Role-based access control
 - Session management with security protections
+
+<div align="center">
+  <img src="Casa_Monarca/components/static/Login.png" width="1000"/>
+</div>
 
 ### Client Tracking Dashboard
 - Comprehensive view of all client cases
