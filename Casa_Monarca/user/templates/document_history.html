@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casa Monarca - Dashboard</title>
+  <title>Casa Monarca - Historial de documentos</title>
   <link rel="stylesheet" href="{{ url_for('user.static', filename='NavBar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('user.static', filename='document_history.css') }}">
 </head>
 <body>
   <!-- Header section -->
   <header class="main-header">
     <div class="logo-container">
-      <!-- Menu toggle button moved to sidebar -->
       <img src="{{ url_for('components.static', filename='Casa-Monarca.png') }}" alt="Logo de Casa Monarca" class="header-logo">
     </div>
     <div class="workspace-info">
@@ -22,7 +22,6 @@
   <div class="content-wrapper">
     <!-- Sidebar navigation -->
     <aside class="sidebar" id="sidebar">
-      <!-- Menu toggle button positioned without inline styles -->
       <button class="menu-toggle sidebar-button" id="menuToggle">
         <div class="hamburger-icon">
           <span></span>
@@ -32,7 +31,7 @@
       </button>
       <nav class="nav-links">
         <a href="#">Subir y firmar documentos</a>
-        <a href="{{ url_for('user.document_history') }}">Historial de documentos</a>
+        <a href="{{ url_for('user.document_history') }}" class="active">Historial de documentos</a>
         <a href="#">Sección 3</a>
         <a href="#">Sección 4</a>
         <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
@@ -41,17 +40,43 @@
 
     <!-- Page content goes here -->
     <main class="main-content">
-      <!-- Your page content will go here -->
+      <div class="document-history-container">
+        <h1>Historial de documentos</h1>
+        <div class="table-container">
+          <table class="document-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Firma</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for doc in documents %}
+              <tr>
+                <td>{{ doc.id }}</td>
+                <td>{{ doc.name }}</td>
+                <td>
+                  <a href="#" class="document-link">{{ doc.document }}</a>
+                </td>
+                <td class="status-cell {% if doc.sign == 'Firmado' %}signed{% else %}pending{% endif %}">
+                  {{ doc.sign }}
+                </td>
+                <td>{{ doc.date }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
   </div>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
-    const header = document.querySelector('.main-header');
-    
-    // Removed the positionButton function and related event listeners
-    // since the button is now positioned in the header
     
     menuToggle.addEventListener('click', function() {
       // Toggle the sidebar
