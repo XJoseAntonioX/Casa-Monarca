@@ -1,5 +1,7 @@
 # Casa Monarca Project
 
+![alt text](Casa_Monarca/components/static/Casa-Monarca.png)
+
 ## Overview
 
 The Casa Monarca project is a web application designed to support Casa Monarca's work with migrants seeking political aid. The platform provides a comprehensive system for workers to access accounts, track client documentation, and manage the processing of political documents required for migrants to maintain legal status in other countries.
