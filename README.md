@@ -60,14 +60,6 @@ The application features a secure dashboard that enables Casa Monarca staff to m
 | Limited accessibility for staff members | Cloud-based system allowing secure access from multiple locations |
 | Audit trail requirements for legal documents | Comprehensive logging and timestamp system for all document actions |
 
-## Technical Implementation
-
-The application is built using:
-- Python Flask web framework
-- Azure Cosmos DB for data storage
-- Docker containerization for deployment
-- Modern HTML/CSS frontend with responsive design
-
 ## Architecture
 
 ![System Architecture](Casa_Monarca/components/static/architecture_rounded.png)
