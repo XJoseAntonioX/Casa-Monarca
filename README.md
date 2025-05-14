@@ -1,6 +1,7 @@
 # Casa Monarca Project
 
-![image](https://github.com/user-attachments/assets/7c81b0f3-1401-4a99-aeaf-a6cd2fe33082)
+<img src="https://github.com/user-attachments/assets/7c81b0f3-1401-4a99-aeaf-a6cd2fe33082" width="400" height="300"/>
+
 
 ## Overview
 
